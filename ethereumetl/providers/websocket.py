@@ -15,3 +15,4 @@ class BatchWebSocketProvider(WebsocketProvider):
                           "Request: %s, Response: %s",
                           self.endpoint_uri, text, future.result())
         return future.result()
+        
