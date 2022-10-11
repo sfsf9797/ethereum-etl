@@ -19,8 +19,8 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        python -m pip3 install --upgrade pip3
-        pip3 install -e .[dev,streaming]
+        python -m pip install --upgrade pip
+        pip install -e .[dev,streaming]
     - name: Test with pytest
       run: |
         export  PROVIDER_URL=${{ secrets.INFURA_API }}
