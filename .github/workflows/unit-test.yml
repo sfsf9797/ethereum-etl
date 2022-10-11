@@ -13,4 +13,4 @@ steps:
     pytest -vv
   with:
     PROVIDER_URL: ${{ secrets.INFURA_API }}
-    ETHEREUM_ETL_RUN_SLOW_TESTS:False
+    ETHEREUM_ETL_RUN_SLOW_TESTS: False
