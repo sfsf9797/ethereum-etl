@@ -23,8 +23,8 @@ jobs:
         pip install -e .[dev,streaming]
     - name: Test with pytest
       run: |
-        export  PROVIDER_URL=${{ secrets.INFURA_API }}
-        export  ETHEREUM_ETL_RUN_SLOW_TESTS=True
+        export  PROVIDER_URL=""
+        export  ETHEREUM_ETL_RUN_SLOW_TESTS=False
         pytest -vv
 
        
