@@ -23,10 +23,11 @@
 
 from urllib.parse import urlparse
 
-from web3 import IPCProvider, HTTPProvider
+from web3 import IPCProvider, HTTPProvider, WebsocketProvider
 
 from ethereumetl.providers.ipc import BatchIPCProvider
 from ethereumetl.providers.rpc import BatchHTTPProvider
+from ethereumetl.providers.websocket import BatchWebSocketProvider
 
 DEFAULT_TIMEOUT = 60
 
@@ -44,6 +45,11 @@ def get_provider_from_uri(uri_string, timeout=DEFAULT_TIMEOUT, batch=False):
             return BatchHTTPProvider(uri_string, request_kwargs=request_kwargs)
         else:
             return HTTPProvider(uri_string, request_kwargs=request_kwargs)
+    elif uri.scheme == 'ws' or uri.scheme == 'wss':
+        if batch:
+            return BatchWebSocketProvider(uri_string, websocket_timeout=timeout)
+        else:
+            return WebsocketProvider(uri_string, websocket_timeout=timeout)
     else:
         raise ValueError('Unknown uri scheme {}'.format(uri_string))
 
